@@ -1,4 +1,3 @@
-import Link from 'next/link';
 import Layout from '../../components/layout';
 
 export default function Invoice() {
@@ -10,7 +9,6 @@ export default function Invoice() {
                     List of invoice
                 </div>
             </div>
-            
         </Layout>
     );
 }

@@ -1,4 +1,3 @@
-import Link from 'next/link';
 import Layout from '../../components/layout';
 import Grid from '../../components/Grid';
 import homes from 'data.json';
