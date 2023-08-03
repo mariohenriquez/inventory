@@ -1,5 +1,7 @@
 export default function Layout({ children }) {
     return (
-            <div className='max-w-screen-xl mx-auto pt-[72px]'>{children}</div>
+        <section className='pt-20'>
+            <div className='max-w-screen-xl mx-auto'>{children}</div>
+        </section>
     );
 }

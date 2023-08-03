@@ -10,7 +10,7 @@ const Card = ({
 }) => (
   <Link href={`/inventory/${id}`}>
     <div className="block w-full">
-        <div className="bg-gray-200 rounded-lg shadow overflow-hidden aspect-w-16 aspect-h-9">
+        <div className="overflow-hidden aspect-w-16 aspect-h-9">
             <Image
                 src={image}
                 alt={title}

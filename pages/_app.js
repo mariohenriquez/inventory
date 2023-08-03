@@ -9,10 +9,10 @@ export const metadata = {
 
 export default function App({ Component, pageProps }) {
   return (
-      <>
+      <div className='min-h-screen'>
         <Header />
         <Component {...pageProps} />
         <Footer />
-      </>
+      </div>
   )
 }

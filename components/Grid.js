@@ -1,8 +1,10 @@
 import PropTypes from 'prop-types';
 import Card from '../components/Card';
+import { getProducts } from '../api/inventory/index';
 
-const Grid = ({ homes = [] }) => {
-  const isEmpty = homes.length === 0;
+const Grid = ({ data = [] }) => {
+    console.log("DATA", data)
+  const isEmpty = data.length === 0;
 
   const toggleFavorite = async id => {
     // TODO: Add/remove home from the authenticated user's favorites
@@ -14,15 +16,39 @@ const Grid = ({ homes = [] }) => {
     </p>
   ) : (
     <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-      {homes.map(home => (
-        <Card key={home.id} {...home} onClickFavorite={toggleFavorite} />
+      {data.map(data => (
+        <Card key={data.id} {...data} onClickFavorite={toggleFavorite} />
       ))}
     </div>
   );
 };
 
 Grid.propTypes = {
-  homes: PropTypes.array,
+  data: PropTypes.array,
 };
 
 export default Grid;
+
+
+// import ProductCard from '../../components/ProductCard';
+// import { getProducts } from '../../api/inventory/index';
+
+// const ShopPage = ({ products }) => {
+//   return (
+//     <div>
+//       <h1>All Results</h1>
+//       <div>
+//         {products.map((product) => (
+//           <ProductCard key={product.id} product={product} />
+//         ))}
+//       </div>
+//     </div>
+//   );
+// };
+
+// export default ShopPage;
+
+export async function getStaticProps() {
+  const products = await getProducts();
+  return { props: { products } };
+}
