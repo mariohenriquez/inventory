@@ -1,3 +1,5 @@
+import Header from '../components/Header';
+import Footer from '../components/Footer';
 import '../styles/globals.css';
 
 export const metadata = {
@@ -6,5 +8,11 @@ export const metadata = {
 }
 
 export default function App({ Component, pageProps }) {
-  return <Component {...pageProps} />;
+  return (
+      <>
+        <Header />
+        <Component {...pageProps} />
+        <Footer />
+      </>
+  )
 }

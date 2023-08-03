@@ -5,7 +5,7 @@ import homes from 'data.json';
 export default function Inventory() {
     return (
         <Layout>
-            <div className='py-5'>
+            <div className='p-5'>
                 <div className='flex'>
                     <Link href="/inventory">Back</Link> / 
                     <h1 className='text-3xl mb-5'>Inventory</h1>
