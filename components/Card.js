@@ -8,28 +8,24 @@ const Card = ({
   title = '',
   price = 0,
 }) => (
-  <Link href={`/inventory/${id}`}>
-    <div className="block w-full">
-        <div className="overflow-hidden aspect-w-16 aspect-h-9">
-            <Image
-                src={image}
-                alt={title}
-                height={200}
-                width={302}
-                className="hover:opacity-80 transition"
-            />
-        </div>
 
-        <div className="mt-2 w-full text-gray-700 font-semibold leading-tight">
-            {title ?? ''}
-        </div>
-        <p className="mt-2 text-gray-500">
-            {new Intl.NumberFormat('en-US', {
-            style: 'currency',
-            currency: 'USD',
-            }).format(price ?? 0)}{' '}
-        </p>
+  <Link href={`/inventory/${id}`} className='group'>
+    <div className="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-lg bg-gray-200 xl:aspect-h-8 xl:aspect-w-7">
+      <Image
+          src={image}
+          alt={title}
+          height={200}
+          width={302}
+          className="h-full w-full object-cover object-center group-hover:opacity-75"
+        />
     </div>
+    <h3 class="mt-4 text-sm text-gray-700">{title ?? ''}</h3>
+    <p class="mt-1 text-lg font-medium text-gray-900">
+      {new Intl.NumberFormat('en-US', {
+        style: 'currency',
+        currency: 'USD',
+        }).format(price ?? 0)}{' '}
+    </p>
   </Link>
 );
 
@@ -39,7 +35,6 @@ Card.propTypes = {
   title: PropTypes.string,
   description: PropTypes.string,
   price: PropTypes.number,
-  favorite: PropTypes.bool,
   onClickFavorite: PropTypes.func,
 };
 

@@ -7,7 +7,7 @@ export default function Inventory() {
         <Layout>
             <div className='p-5'>
                 <h1 className='text-3xl mb-5'>Inventory</h1>
-                <div className=''>
+                <div className='py-4'>
                     <Grid data={data} />
                 </div>
             </div>

@@ -3,7 +3,6 @@ import Card from '../components/Card';
 import { getProducts } from '../api/inventory/index';
 
 const Grid = ({ data = [] }) => {
-    console.log("DATA", data)
   const isEmpty = data.length === 0;
 
   const toggleFavorite = async id => {
@@ -15,7 +14,8 @@ const Grid = ({ data = [] }) => {
       <span>Unfortunately, there is nothing to display yet.</span>
     </p>
   ) : (
-    <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+   
+    <div className="grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8">
       {data.map(data => (
         <Card key={data.id} {...data} onClickFavorite={toggleFavorite} />
       ))}
