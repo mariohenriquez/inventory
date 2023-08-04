@@ -17,7 +17,7 @@ const Grid = ({ data = [] }) => {
    
     <div className="grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8">
       {data.map(data => (
-        <Card key={data.id} {...data} onClickFavorite={toggleFavorite} />
+        <Card key={data.id} {...data} />
       ))}
     </div>
   );
@@ -28,25 +28,6 @@ Grid.propTypes = {
 };
 
 export default Grid;
-
-
-// import ProductCard from '../../components/ProductCard';
-// import { getProducts } from '../../api/inventory/index';
-
-// const ShopPage = ({ products }) => {
-//   return (
-//     <div>
-//       <h1>All Results</h1>
-//       <div>
-//         {products.map((product) => (
-//           <ProductCard key={product.id} product={product} />
-//         ))}
-//       </div>
-//     </div>
-//   );
-// };
-
-// export default ShopPage;
 
 export async function getStaticProps() {
   const products = await getProducts();

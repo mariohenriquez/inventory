@@ -45,7 +45,7 @@ const Navbar = () => {
                         </div>
                     </div>
                     <div className='flex-none ml-auto items-center justify-center sm:items-stretch sm:justify-start'>
-                        <Link href='/cart'>
+                        <Link href='/cart' className='relative'>
                             <Image
                                 src="/images/shopping-cart.png" // Route of the image file
                                 height={30} // Desired size with correct aspect ratio
@@ -53,6 +53,9 @@ const Navbar = () => {
                                 alt="Shopping cart"
                                 priority={true}
                             />
+                            <span class="absolute top-[-8px] right-[-13px] h-auto w-auto py-0.5 inline-block rounded-full bg-white text-sm leading-4 min-w-[1.3rem] text-center">
+                                <span class="">1</span>
+                            </span>
                         </Link>
                     </div>
                 </div>
