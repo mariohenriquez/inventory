@@ -5,10 +5,6 @@ import { getProducts } from '../api/inventory/index';
 const Grid = ({ data = [] }) => {
   const isEmpty = data.length === 0;
 
-  const toggleFavorite = async id => {
-    // TODO: Add/remove home from the authenticated user's favorites
-  };
-
   return isEmpty ? (
     <p className="text-amber-700 bg-amber-100 px-4 rounded-md py-2 max-w-max inline-flex items-center space-x-1">
       <span>Unfortunately, there is nothing to display yet.</span>

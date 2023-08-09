@@ -10,7 +10,7 @@ export default function handler(req, res) {
     res.setHeader('Allow', ['GET']);
     res.status(405).json({ message: `Method ${req.method} is not allowed` });
   } else {
-    const products = getProductsByCategory(req.query.id);
+    const products = getProductsByID(req.query.id);
     res.status(200).json(products);
   }
 }
