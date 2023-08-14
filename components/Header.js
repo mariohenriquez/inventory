@@ -1,7 +1,14 @@
 import Link from 'next/link';
 import Image from 'next/image';
+import { useSelector } from 'react-redux';
 
 const Navbar = () => {
+    
+    const cart = useSelector((state) => state.cart)
+    const getItemsCount = () => {
+        return cart.reduce((accumulator, item) => accumulator + item.quantity, 0);
+    };
+
     return (  
         <nav className="px-5 bg-[#0071dc] fixed top-0 left-0 right-0 m-auto z-10">
             <div className="max-w-screen-xl mx-auto">
@@ -54,7 +61,7 @@ const Navbar = () => {
                                 priority={true}
                             />
                             <span className="absolute top-[-8px] right-[-13px] h-auto w-auto py-0.5 inline-block rounded-full bg-white text-sm leading-4 min-w-[1.3rem] text-center">
-                                <span className="">1</span>
+                                <span className="">{getItemsCount()}</span>
                             </span>
                         </Link>
                     </div>
@@ -71,8 +78,7 @@ const Navbar = () => {
                     </Link>                    
                 </div>
             </div>
-        </nav>
-          
+        </nav>    
     );
 };
 
