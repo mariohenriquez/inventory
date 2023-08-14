@@ -11,6 +11,7 @@ export default function handler(req, res) {
     res.status(405).json({ message: `Method ${req.method} is not allowed` });
   } else {
     const products = getProductsByID(req.query.id);
+    console.log(products)
     res.status(200).json(products);
   }
 }

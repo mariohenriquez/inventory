@@ -1,16 +1,16 @@
 import { Provider } from 'react-redux';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
+import store from '../redux/store';
 import '../styles/globals.css';
-import {createStore, applyMiddleware} from 'redux';
 
 export const metadata = {
   title: 'Walmart shop',
   description: 'Shop to buy the diapers',
 }
 
-export default function App({ Component, pageProps }) {
-  const store = createStore(()=>[], {}, applyMiddleware());
+function App({ Component, pageProps }) {
+
   return (
     <Provider store={store}>
       <div className='min-h-screen'>
@@ -21,3 +21,4 @@ export default function App({ Component, pageProps }) {
     </Provider>
   )
 }
+export default App;
