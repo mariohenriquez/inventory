@@ -5,7 +5,7 @@ import { addToCart } from '../redux/cart.slice';
 
 
 const Card = ({ product }) => {
-  console.log('Card', product)
+  
   const dispatch = useDispatch();
 
   return (

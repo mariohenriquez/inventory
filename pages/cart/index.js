@@ -5,8 +5,8 @@ import { useSelector, useDispatch } from 'react-redux';
 import { incrementQuantity, decrementQuantity, removeFromCart} from '../../redux/cart.slice';
 
 export default function Cart() {
+    
     const cart = useSelector((state) => state.cart);
-    console.log("CAR",cart)
     const dispatch = useDispatch();
 
     const getTotalPrice = () => {

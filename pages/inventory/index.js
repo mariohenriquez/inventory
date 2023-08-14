@@ -3,7 +3,6 @@ import Grid from '../../components/Grid';
 import products from 'data.json';
 
 export default function Inventory() {
-    console.log("DATA", products)
     return (
         <Layout>
             <div className='p-5'>

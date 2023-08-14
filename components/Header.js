@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import { useSelector } from 'react-redux';
+import {useState} from 'react';
 
 const Navbar = () => {
     
@@ -9,13 +10,16 @@ const Navbar = () => {
         return cart.reduce((accumulator, item) => accumulator + item.quantity, 0);
     };
 
+    const [openMenu, setOpenMenu] = useState(false);
+    console.log('HEY', openMenu)
+
     return (  
         <nav className="px-5 bg-[#0071dc] fixed top-0 left-0 right-0 m-auto z-10">
             <div className="max-w-screen-xl mx-auto">
                 <div className="relative flex h-16 items-center justify-between">
                     <div className="absolute inset-y-0 left-0 flex items-center sm:hidden">
 
-                    <button type="button" className="relative inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-gray-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white" aria-controls="mobile-menu" aria-expanded="false">
+                    <button onClick={() => setOpenMenu(!openMenu)} type="button" className="relative inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-gray-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white" aria-controls="mobile-menu" aria-expanded="false">
                         <span className="absolute -inset-0.5"></span>
                         <span className="sr-only">Open main menu</span>
 
@@ -68,12 +72,12 @@ const Navbar = () => {
                 </div>
                 </div>
             
-                <div className="sm:hidden" id="mobile-menu">
+                <div className={`${ openMenu ? '' : 'hidden'} sm:hidden`} id="mobile-menu">
                 <div className="space-y-1 px-2 pb-3 pt-2">
-                    <Link href="/inventory" className="bg-[#214d7c] text-white block rounded-md px-3 py-2 text-base font-medium">
+                    <Link href="/inventory" className="text-white block rounded-md px-3 py-2 text-base font-medium">
                         Inventory
                     </Link>
-                    <Link href="/invoice" className="text-gray-300 transition hover:bg-[#214d7c] hover:text-white block rounded-md px-3 py-2 text-base font-medium">
+                    <Link href="/invoice" className="text-gray-300 transition hover:text-white block rounded-md px-3 py-2 text-base font-medium">
                         Invoice
                     </Link>                    
                 </div>
