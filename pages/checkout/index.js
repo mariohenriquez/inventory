@@ -33,7 +33,7 @@ export default function Checkout() {
     const [email, setEmail] = useState("");
     const postPay = async () => {
         console.log(email)
-        fetch('https://api.example.com/endpoint', {
+        fetch('/api/checkout', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
@@ -165,7 +165,7 @@ export default function Checkout() {
                         </div>
 
                         <div className="mt-6 flex items-center justify-end gap-x-6">
-                            <button onClick={postPay} className="rounded-md bg-[#0071dc] px-3 py-2 text-sm font-semibold text-white shadow-sm transition hover:opacity-80 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Pay now</button>
+                            <button onClick={postPay} className="cursor-not-allowed opacity-75 pointer-events-none rounded-md bg-[#0071dc] px-3 py-2 text-sm font-semibold text-white shadow-sm transition hover:opacity-80 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Pay now</button>
                         </div>
                         <div className="block lg:hidden mt-6 border-t border-gray-200 py-6">
                             <div className="text-base text-gray-900">
