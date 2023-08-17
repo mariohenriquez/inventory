@@ -2,11 +2,12 @@ import Layout from "../../components/layout"
 import Image from "next/image";
 import Link from "next/link";
 import { useSelector, useDispatch } from 'react-redux';
+import { useState } from "react";
+// import {}
 
 export default function Checkout() {
     
     const cart = useSelector((state) => state.cart);
-    const dispatch = useDispatch();
 
     const getSubtotalPrice = () => {
         return cart.reduce(
@@ -29,13 +30,24 @@ export default function Checkout() {
         return getTaxes() + getSubtotalPrice();
     }
 
+    const [email, setEmail] = useState("");
+    const postPay = async () => {
+        console.log(email)
+        fetch('https://api.example.com/endpoint', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                email
+            })
+        })
+    }
+
     return (
         <Layout>
             <div className="p-5">
                 <h1 className="text-3xl">Checkout</h1>
                 <div className="flex flex-col lg:flex-row justify-between mt-8 rounded-md border">
-                     {/* NEW CONTENT */}
-                    <form className="flex-initial w-full lg:w-3/5 order-last lg:order-none p-6 px-8">
+                    <div className="flex-initial w-full lg:w-3/5 order-last lg:order-none p-3 lg:p-6 px-4 lg:px-8">
                         <div className="space-y-6">
                             <div className="pb-5">
                                 <h2 className="text-base font-semibold leading-7 text-gray-900">Contact Information</h2>
@@ -43,9 +55,16 @@ export default function Checkout() {
 
                                 <div className="mt-5 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
                                     <div className="col-span-full">
-                                        <label for="email" className="block text-sm font-medium leading-6 text-gray-900">Email address</label>
+                                        <label htmlFor="email" className="block text-sm font-medium leading-6 text-gray-900">Email address</label>
                                         <div className="mt-2">
-                                            <input id="email" name="email" type="email" autocomplete="email" className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" />
+                                            <input 
+                                                id="email" 
+                                                name="email" 
+                                                type="email" 
+                                                autoComplete="email" 
+                                                className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" 
+                                                onChange={(e) => setEmail(e.target.value)}
+                                                />
                                         </div>
                                     </div>
                                 </div>
@@ -57,37 +76,37 @@ export default function Checkout() {
 
                                 <div className="mt-5 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
                                     <div className="sm:col-span-3">
-                                    <label for="first-name" className="block text-sm font-medium leading-6 text-gray-900">First name</label>
+                                    <label htmlFor="first-name" className="block text-sm font-medium leading-6 text-gray-900">First name</label>
                                     <div className="mt-2">
-                                        <input type="text" name="first-name" id="first-name" autocomplete="given-name" className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" />
+                                        <input type="text" name="first-name" id="first-name" autoComplete="given-name" className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" />
                                     </div>
                                     </div>
 
                                     <div className="sm:col-span-3">
-                                    <label for="last-name" className="block text-sm font-medium leading-6 text-gray-900">Last name</label>
+                                    <label htmlFor="last-name" className="block text-sm font-medium leading-6 text-gray-900">Last name</label>
                                     <div className="mt-2">
-                                        <input type="text" name="last-name" id="last-name" autocomplete="family-name" className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" />
+                                        <input type="text" name="last-name" id="last-name" autoComplete="family-name" className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" />
                                     </div>
                                     </div>
 
-                                    <div className="sm:col-span-4">
-                                        <label for="street-address" className="block text-sm font-medium leading-6 text-gray-900">Street address</label>
+                                    <div className="sm:col-span-3">
+                                        <label htmlFor="street-address" className="block text-sm font-medium leading-6 text-gray-900">Street address</label>
                                         <div className="mt-2">
-                                            <input type="text" name="street-address" id="street-address" autocomplete="street-address" className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" />
+                                            <input type="text" name="street-address" id="street-address" autoComplete="street-address" className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" />
                                         </div>
                                     </div>
 
-                                    <div className="sm:col-span-2">
-                                    <label for="street-address" className="block text-sm font-medium leading-6 text-gray-900">Phone number</label>
+                                    <div className="sm:col-span-3">
+                                    <label htmlFor="street-address" className="block text-sm font-medium leading-6 text-gray-900">Phone number</label>
                                     <div className="mt-2">
-                                        <input type="tel" name="phone-number" id="phone-number" autocomplete="phone-number" className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" />
+                                        <input type="tel" name="phone-number" id="phone-number" autoComplete="phone-number" className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" />
                                     </div>
                                     </div>
 
                                     <div className="sm:col-span-3 sm:col-start-1">
-                                    <label for="country" className="block text-sm font-medium leading-6 text-gray-900">Country</label>
+                                    <label htmlFor="country" className="block text-sm font-medium leading-6 text-gray-900">Country</label>
                                     <div className="mt-2">
-                                        <select id="country" name="country" autocomplete="country-name" className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                                        <select id="country" name="country" autoComplete="country-name" className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
                                         <option>United States</option>
                                         <option>Canada</option>
                                         <option>Mexico</option>
@@ -96,23 +115,23 @@ export default function Checkout() {
                                     </div>
 
                                     <div className="sm:col-span-3">
-                                    <label for="city" className="block text-sm font-medium leading-6 text-gray-900">City</label>
+                                    <label htmlFor="city" className="block text-sm font-medium leading-6 text-gray-900">City</label>
                                     <div className="mt-2">
-                                        <input type="text" name="city" id="city" autocomplete="address-level2" className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" />
+                                        <input type="text" name="city" id="city" autoComplete="address-level2" className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" />
                                     </div>
                                     </div>
 
                                     <div className="sm:col-span-3 sm:col-start-1">
-                                    <label for="region" className="block text-sm font-medium leading-6 text-gray-900">State</label>
+                                    <label htmlFor="region" className="block text-sm font-medium leading-6 text-gray-900">State</label>
                                     <div className="mt-2">
-                                        <input type="text" name="region" id="region" autocomplete="address-level1" className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" />
+                                        <input type="text" name="region" id="region" autoComplete="address-level1" className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" />
                                     </div>
                                     </div>
 
                                     <div className="sm:col-span-3">
-                                    <label for="postal-code" className="block text-sm font-medium leading-6 text-gray-900">Postal code</label>
+                                    <label htmlFor="postal-code" className="block text-sm font-medium leading-6 text-gray-900">Postal code</label>
                                     <div className="mt-2">
-                                        <input type="text" name="postal-code" id="postal-code" autocomplete="postal-code" className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" />
+                                        <input type="text" name="postal-code" id="postal-code" autoComplete="postal-code" className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" />
                                     </div>
                                     </div>
                                 </div>
@@ -124,21 +143,21 @@ export default function Checkout() {
 
                                 <div className="mt-5 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
                                     <div className="col-span-full">
-                                        <label for="card-number" className="block text-sm font-medium leading-6 text-gray-900">Card number</label>
+                                        <label htmlFor="card-number" className="block text-sm font-medium leading-6 text-gray-900">Card number</label>
                                         <div className="mt-2">
-                                            <input id="card-number" name="card-number" type="number" autocomplete="card-number" className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" />
+                                            <input id="card-number" name="card-number" type="number" autoComplete="card-number" className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" />
                                         </div>
                                     </div>
                                     <div className="sm:col-span-4">
-                                        <label for="expiration-date" className="block text-sm font-medium leading-6 text-gray-900">Expiration date (MM/YY)</label>
+                                        <label htmlFor="expiration-date" className="block text-sm font-medium leading-6 text-gray-900">Expiration date (MM/YY)</label>
                                         <div className="mt-2">
-                                            <input id="expiration-date" name="expiration-date" type="text" autocomplete="expiration-date" className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" />
+                                            <input id="expiration-date" name="expiration-date" type="text" autoComplete="expiration-date" className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" />
                                         </div>
                                     </div>
                                     <div className="sm:col-span-2">
-                                        <label for="cvc" className="block text-sm font-medium leading-6 text-gray-900">CVC</label>
+                                        <label htmlFor="cvc" className="block text-sm font-medium leading-6 text-gray-900">CVC</label>
                                         <div className="mt-2">
-                                            <input id="cvc" name="cvc" type="number" autocomplete="cvc" className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" />
+                                            <input id="cvc" name="cvc" type="number" autoComplete="cvc" className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" />
                                         </div>
                                     </div>
                                 </div>
@@ -146,7 +165,7 @@ export default function Checkout() {
                         </div>
 
                         <div className="mt-6 flex items-center justify-end gap-x-6">
-                            <button type="submit" className="rounded-md bg-[#0071dc] px-3 py-2 text-sm font-semibold text-white shadow-sm transition hover:opacity-80 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Pay now</button>
+                            <button onClick={postPay} className="rounded-md bg-[#0071dc] px-3 py-2 text-sm font-semibold text-white shadow-sm transition hover:opacity-80 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Pay now</button>
                         </div>
                         <div className="block lg:hidden mt-6 border-t border-gray-200 py-6">
                             <div className="text-base text-gray-900">
@@ -168,10 +187,8 @@ export default function Checkout() {
                                 </div>
                             </div>
                         </div>
-                    </form>
-
-                    {/* END - NEW CONTENT */}
-                    <div className="flex-initial w-full lg:w-2/5 order-first lg:order-none bg-[#f9fafb] p-6 px-8">
+                    </div>
+                    <div className="flex-initial w-full lg:w-2/5 order-first lg:order-none bg-[#f9fafb] p-3 lg:p-6 px-4 lg:px-8">
                         <div className="flow-root">
                         <h2 className="text-base font-semibold leading-7 text-gray-900">Order Summary</h2>
                             {cart.length === 0 ? (

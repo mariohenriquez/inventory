@@ -69,7 +69,7 @@ export default function Cart() {
                             </div>
                             <p className="mt-0.5 text-sm text-gray-500">Shipping and taxes calculated at checkout.</p>
                             <div className="mt-6">
-                                <Link href="/checkout" className="flex items-center justify-center rounded-md border border-transparent bg-[#0071dc] px-6 py-3 text-base font-medium text-white shadow-sm transition hover:opacity-80">Checkout</Link>
+                                <Link href="/checkout" className={`${cart.length === 0 ? 'cursor-not-allowed opacity-75 pointer-events-none' : ''} flex items-center justify-center rounded-md border border-transparent bg-[#0071dc] px-6 py-3 text-base font-medium text-white shadow-sm transition hover:opacity-80`}>Checkout</Link>
                             </div>
                             <div className="mt-6 flex justify-center text-center text-sm text-gray-500">
                                 <p>or <Link href="/inventory" className="font-medium text-[#0071dc] transition hover:opacity-70">Continue Shopping <span aria-hidden="true"> &rarr;</span></Link></p>
